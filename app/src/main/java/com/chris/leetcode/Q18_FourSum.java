@@ -38,12 +38,12 @@ public class Q18_FourSum {
             if (i > 0 && nums[i] == nums[i - 1])
                 continue;
             for (int j = length - 1; j > i + 2; j--) {
-                if (j < length - 1 && nums[j] == nums[j + 1]) { // 第四个加数使用不重复
+                if (j < length - 1 && nums[j] == nums[j + 1]) { // 第四個數使用不重複
                     continue;
                 }
 
-                int start = i + 1; // 第二个加数
-                int end = j - 1; // 第三个加数
+                int start = i + 1; // 第二個數
+                int end = j - 1; // 第三個數
                 int n = target - nums[i] - nums[j];
                 while (start < end) {
                     if (nums[start] + nums[end] == n) {
@@ -55,19 +55,19 @@ public class Q18_FourSum {
                         result.add(four);
                         do {
                             start++;
-                        } while (start < end && nums[start] == nums[start - 1]); // 保证再次使用第二个数不重复
+                        } while (start < end && nums[start] == nums[start - 1]); // 保證再次使用第二個數不會重複
 
                         do {
                             end--;
-                        } while (start < end && nums[end] == nums[end + 1]); // 保证再次使用第三个数不重复
-                    } else if (nums[start] + nums[end] < n) {
+                        } while (start < end && nums[end] == nums[end + 1]); // 保證再次使用第三個數不會重複
+                    } else if (nums[start] + nums[end] < n) { //若中間兩個pointer的和太小需要將第二個指針右移
                         do {
                             start++;
-                        } while (start < end && nums[start] == nums[start - 1]); // 保证再次使用第二个数不重复
-                    } else {
+                        } while (start < end && nums[start] == nums[start - 1]); // 保證再次使用第二個數不會重複
+                    } else {//若中間兩個pointer的和太大需要將第三個指針左移
                         do {
                             end--;
-                        } while (start < end && nums[end] == nums[end + 1]); // 保证再次使用第三个数不重复
+                        } while (start < end && nums[end] == nums[end + 1]); // 保證再次使用第三個數不會重複
                     }
                 }
             }
