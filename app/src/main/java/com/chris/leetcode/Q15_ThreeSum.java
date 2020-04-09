@@ -24,6 +24,11 @@ public class Q15_ThreeSum {
       [-1, 0, 1],
       [-1, -1, 2]
     ]
+
+    這一題是TwoSum的加強版，由於題目要求為0,
+    所以我們可依依序取出陣列中的數，將0減去取出的數就是我們需要的剩下兩數之和
+    剩下兩數怎麼求得呢？我們可以使用兩個pointer，一前一後拜訪剩餘陣列
+    由於我們已經先由小到大重新sorting過陣列，所以可以容易的判斷何時pointer要移動
      */
     public static void main(String[] args) {
         int[] a = {-1, 0, 1, 2, -1, -4};

@@ -18,34 +18,17 @@ public class Q14_LongestCommonPrefix {
     public static void main(String[] args) {
         String[] strings = {"flower", "flow", "flight"};
         new Q14_LongestCommonPrefix().longestCommonPrefix(strings);
+        new Q14_LongestCommonPrefix().longestCommonPrefix2(strings);
     }
 
+    /*
+    先取出全部陣列的第一個String，先把它當作是prefix
+    接著往下做比較，如果不是跟下一個String依樣，就由尾開始刪掉prefix
+    一直坐到最後一個String剩下的prefix就是longestCommonPrefix
+    這邊學習到 "string".indexOf("string") = 0 :
+    就是 自己.indexOf(自己) 會為0 ; 不為自己就是 -1
+     */
     public String longestCommonPrefix(String[] strs) {
-        if (strs == null || strs.length == 0) return "";
-        return longestCommonPrefix(strs, 0, strs.length - 1);
-    }
-
-    private String longestCommonPrefix(String[] strs, int left, int right) {
-        if (left == right) {
-            return strs[left];
-        } else {
-            int mid = (left + right) / 2;
-            String lcpLeft = longestCommonPrefix(strs, left, mid);
-            String lcpRight = longestCommonPrefix(strs, mid + 1, right);
-            return commonPrefix(lcpLeft, lcpRight);
-        }
-    }
-
-    String commonPrefix(String left, String right) {
-        int min = Math.min(left.length(), right.length());
-        for (int i = 0; i < min; i++) {
-            if (left.charAt(i) != right.charAt(i))
-                return left.substring(0, i);
-        }
-        return left.substring(0, min);
-    }
-
-    public String longestCommonPrefix1(String[] strs) {
         if (strs.length == 0)
             return "";
         int length = strs.length;
@@ -59,6 +42,31 @@ public class Q14_LongestCommonPrefix {
             }
         }
         return prefix;
+    }
+
+    public String longestCommonPrefix2(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+        return longestCommonPrefix2(strs, 0, strs.length - 1);
+    }
+
+    private String longestCommonPrefix2(String[] strs, int left, int right) {
+        if (left == right) {
+            return strs[left];
+        } else {
+            int mid = (left + right) / 2;
+            String lcpLeft = longestCommonPrefix2(strs, left, mid);
+            String lcpRight = longestCommonPrefix2(strs, mid + 1, right);
+            return commonPrefix(lcpLeft, lcpRight);
+        }
+    }
+
+    String commonPrefix(String left, String right) {
+        int min = Math.min(left.length(), right.length());
+        for (int i = 0; i < min; i++) {
+            if (left.charAt(i) != right.charAt(i))
+                return left.substring(0, i);
+        }
+        return left.substring(0, min);
     }
 
 }

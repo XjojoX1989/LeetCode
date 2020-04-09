@@ -1,6 +1,11 @@
 package com.chris.leetcode;
 
 public class Q9_PalindromeNumber {
+    /*
+    是否是回文數字
+    把數字每個位數做拆解
+    如何取到每個位數？依序把位數％10，餘數就你要的那個數了
+     */
     public static void main(String[] args) {
         new Q9_PalindromeNumber().isPalindrome(0);
         new Q9_PalindromeNumber().isPalindrome(-121);
