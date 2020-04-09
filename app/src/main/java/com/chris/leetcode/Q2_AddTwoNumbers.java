@@ -9,8 +9,4 @@ public class Q2_AddTwoNumbers {
 
         return l1;
     }
-
-    class ListNode{
-
-    }
 }
