@@ -23,7 +23,7 @@ public class Q19_RemoveNthNodeFromEndOfList {
         listNode.next.next = new ListNode(3);
         listNode.next.next.next = new ListNode(4);
         listNode.next.next.next.next = new ListNode(5);
-        ListNode b = new Q19_RemoveNthNodeFromEndOfList().removeNthFromEnd(listNode, 3);
+        ListNode b = new Q19_RemoveNthNodeFromEndOfList().removeNthFromEnd2(listNode, 3);
     }
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
@@ -42,6 +42,31 @@ public class Q19_RemoveNthNodeFromEndOfList {
             first = first.next;
         }
         first.next = first.next.next;
+        return dummy.next;
+    }
+    /*
+
+    dummy 0->1->2->3->4->5
+    head     1->2->3->4->5
+    slow           s
+    fast                 f
+
+     */
+
+    public ListNode removeNthFromEnd2(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode slow;
+        ListNode fast;
+        slow = fast = dummy;
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
+        }
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
         return dummy.next;
     }
 
