@@ -1,10 +1,11 @@
-package com.chris.leetcode;
+package com.chris.leetcode.string;
 
 public class Q6_ZigZagConversion {
     /*
     INPUT : "PAYPALISHIRING", 3
 
     OUTPUT: "PAHN APLSIIG YIR"
+
         3->4
         0p   0a   h   n
         1a 3p l s i i g
@@ -25,7 +26,29 @@ public class Q6_ZigZagConversion {
       4 A         I
      */
     public static void main(String[] args) {
-        new Q6_ZigZagConversion().convert("AB", 1);
+        new Q6_ZigZagConversion().convert2("PAYPALISHIRING", 5);
+    }
+
+    /*  0   1   2   3   4   5   6   7   8
+        P   A   Y   P   A   L   I   S   H
+
+        P       A       H
+        A   P   L   S
+        Y       I
+     */
+    public String convert2(String s, int numRows) {
+        if (s.length() <= numRows || numRows == 1)
+            return s;
+        StringBuilder sb = new StringBuilder();
+        int cycleCount = numRows * 2 - 2;
+        for (int row = 0; row < numRows; row++) {
+            int offset = cycleCount - row;
+            for (int i = 0; i < s.length(); i++) {
+                if (i % cycleCount == row || i % cycleCount == offset)
+                    sb.append(s.charAt(i));
+            }
+        }
+        return sb.toString();
     }
 
     /*

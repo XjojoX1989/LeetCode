@@ -1,4 +1,4 @@
-package com.chris.leetcode;
+package com.chris.leetcode.string;
 
 public class Q14_LongestCommonPrefix {
     /*
@@ -16,10 +16,29 @@ public class Q14_LongestCommonPrefix {
         Explanation: There is no common prefix among the input strings.
      */
     public static void main(String[] args) {
-        String[] strings = {"flower", "flow", "flight"};
-        new Q14_LongestCommonPrefix().longestCommonPrefix(strings);
-        new Q14_LongestCommonPrefix().longestCommonPrefix2(strings);
+        String[] a = {"flower", "flow", "flight"};
+        String[] b = {"dog", "racecar", "car"};
+        new Q14_LongestCommonPrefix().longestCommonPrefix3(a);
+        new Q14_LongestCommonPrefix().longestCommonPrefix3(b);
     }
+
+    public String longestCommonPrefix3(String[] strs) {
+        if (strs.length==0)
+            return "";
+        String first = strs[0];
+        int i = first.length();
+        for (int j = 1; j < strs.length; j++) {
+            while (i >= 0) {
+                if (strs[j].indexOf(first)!=0) {
+                    first = first.substring(0, i - 1);
+                    i--;
+                }else
+                    break;
+            }
+        }
+        return first;
+    }
+
 
     /*
     先取出全部陣列的第一個String，先把它當作是prefix

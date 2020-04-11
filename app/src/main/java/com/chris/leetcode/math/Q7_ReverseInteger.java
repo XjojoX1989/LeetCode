@@ -1,4 +1,4 @@
-package com.chris.leetcode;
+package com.chris.leetcode.math;
 
 public class Q7_ReverseInteger {
     /*
@@ -22,10 +22,31 @@ public class Q7_ReverseInteger {
     32-bit signed integer range: [−2^31,  2^31 − 1].
     For the purpose of this problem, assume that your
     function returns 0 when the reversed integer overflows.
+
      */
     public static void main(String[] args) {
-        new Q7_ReverseInteger().reverse(1534236469);
-        new Q7_ReverseInteger().reverse(-123);
+        System.out.println(new Q7_ReverseInteger().reverse2(1534236469));
+        System.out.println(new Q7_ReverseInteger().reverse2(-123));
+    }
+    /*
+    筆記
+    把數字顛倒其實很簡單,
+    只要記得取餘數這個方法就可以了
+    對10取取餘數可以拿到當前最後一位的數字
+     */
+    public int reverse2(int x) {
+        boolean isNegative = false;
+        if (x < 0) {
+            isNegative = true;
+            x = 0 - x;
+        }
+        long temp = 0;
+
+        while (x > 0) {
+            temp = temp * 10 + x % 10 > Integer.MAX_VALUE ? 0 : temp * 10 + x % 10;
+            x /= 10;
+        }
+        return (int) (isNegative ? 0 - temp : temp);
     }
 
     public int reverse(int x) {

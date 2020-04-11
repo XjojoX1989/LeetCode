@@ -1,4 +1,4 @@
-package com.chris.leetcode;
+package com.chris.leetcode.math;
 
 public class Q9_PalindromeNumber {
     /*
@@ -11,6 +11,19 @@ public class Q9_PalindromeNumber {
         new Q9_PalindromeNumber().isPalindrome(-121);
         new Q9_PalindromeNumber().isPalindrome(123);
         new Q9_PalindromeNumber().isPalindrome(10);
+    }
+
+    public boolean isPalindrome2(int x) {
+        if (x == 0)
+            return true;
+        if (x < 0 || x % 10 == 0)
+            return false;
+        int ans = 0;
+        while (x > 0) {
+            ans = ans * 10 + x % 10;
+            x = x / 10;
+        }
+        return ans==x;
     }
 
     public boolean isPalindrome(int x) {

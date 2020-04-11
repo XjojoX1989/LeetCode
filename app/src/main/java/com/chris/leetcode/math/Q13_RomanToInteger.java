@@ -1,4 +1,4 @@
-package com.chris.leetcode;
+package com.chris.leetcode.math;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +11,11 @@ public class Q13_RomanToInteger {
     }
 
     /*
+    M    C    M   X   C   I  V
+   1000 100 1000 10  100  1  5
+    5-1+100-10+1000-100+1000=
+
+
      Example 1:                                           Symbol       Value
     Input: 3                                               I             1
     Output: "III"                                          V             5

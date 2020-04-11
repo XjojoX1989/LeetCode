@@ -1,4 +1,4 @@
-package com.chris.leetcode;
+package com.chris.leetcode.math;
 
 public class Q8_StringToInteger {
     /*
@@ -30,11 +30,40 @@ public class Q8_StringToInteger {
                  Thefore INT_MIN (−2^31) is returned.
      */
     public static void main(String[] args) {
-        new Q8_StringToInteger().myAtoi("   -42");
-        new Q8_StringToInteger().myAtoi("42");
-        new Q8_StringToInteger().myAtoi("4193 with words");
-        new Q8_StringToInteger().myAtoi("words and 987");
-        new Q8_StringToInteger().myAtoi("-91283472332");
+        System.out.println(new Q8_StringToInteger().myAtoi2("   -42"));
+        System.out.println(new Q8_StringToInteger().myAtoi2("42"));
+        System.out.println(new Q8_StringToInteger().myAtoi2("4193 with words"));
+        System.out.println(new Q8_StringToInteger().myAtoi2("words and 987"));
+        System.out.println(new Q8_StringToInteger().myAtoi2("-91283472332"));
+        System.out.println(new Q8_StringToInteger().myAtoi2("91283472332"));
+    }
+
+    private int myAtoi2(String str) {
+        if (str.isEmpty())
+            return 0;
+        int length = str.length();
+        int pointer = 0;
+        long ans = 0;
+        int sign = 1;
+        while (pointer < length) {
+            if (str.charAt(pointer) == ' ')
+                pointer++;
+            else if (str.charAt(pointer) == '-' || str.charAt(pointer) == '+') {
+                sign = 0;
+                pointer++;
+            }  else if (str.charAt(pointer) >= '0' && str.charAt(pointer) <= '9') {
+                ans = ans * 10 + (str.charAt(pointer) - '0');
+                pointer++;
+            } else {
+                break;
+            }
+        }
+        if (sign == 0) ans *= -1;
+        if (ans < Integer.MIN_VALUE)
+            ans = Integer.MIN_VALUE;
+        if (ans > Integer.MAX_VALUE)
+            ans = Integer.MAX_VALUE;
+        return (int) ans;
     }
 
     private int myAtoi(String str) {
