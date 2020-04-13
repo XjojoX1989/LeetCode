@@ -1,4 +1,6 @@
-package com.chris.leetcode;
+package com.chris.leetcode.linkedlist;
+
+import com.chris.leetcode.ListNode;
 
 public class Q21_MergeTwoSortedLists {
     /*
@@ -17,9 +19,26 @@ public class Q21_MergeTwoSortedLists {
         ListNode l2 = new ListNode(1);
         l2.next = new ListNode(3);
 //        l2.next.next = new ListNode(4);
-        new Q21_MergeTwoSortedLists().mergeTwoLists(l1, l2);
+        new Q21_MergeTwoSortedLists().mergeTwoLists2(l1, l2);
     }
 
+    private ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(0);
+        ListNode head = dummy;
+        while (l1 != null && l2 != null) {
+            if (l1.val <= l2.val) {
+                head.next = new ListNode(l1.val);
+                l1 = l1.next;
+            } else {
+                head.next = new ListNode(l2.val);
+                l2 = l2.next;
+            }
+            head = head.next;
+        }
+       if (l1!=null) head.next = l1;
+       if (l2!=null) head.next = l2;
+        return dummy.next;
+    }
 
     /*
     head    0->null
@@ -30,7 +49,7 @@ public class Q21_MergeTwoSortedLists {
                   p
 
      */
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    private ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0); // 创建一个头结点，最后还要删除掉
         ListNode tail = dummy;
 
@@ -43,7 +62,7 @@ public class Q21_MergeTwoSortedLists {
                 l2 = l2.next;
             }
 
-         //   tail = tail.next; // 移动到新的尾结点
+               tail = tail.next; // 移动到新的尾结点
         }
 
         tail.next = (l1 != null ? l1 : l2);

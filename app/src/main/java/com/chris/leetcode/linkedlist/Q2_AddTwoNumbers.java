@@ -41,7 +41,7 @@ public class Q2_AddTwoNumbers {
         new Q2_AddTwoNumbers().addTwoNumbers2(a, b);
     }
 
-    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+    private ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
         int sum = 0;
         int carry = 0;
@@ -60,7 +60,7 @@ public class Q2_AddTwoNumbers {
         return dummy.next;
     }
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    private ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;
         int sum = 0;

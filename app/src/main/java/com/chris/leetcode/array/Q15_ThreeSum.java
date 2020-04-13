@@ -1,9 +1,8 @@
-package com.chris.leetcode;
+package com.chris.leetcode.array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,17 +24,59 @@ public class Q15_ThreeSum {
       [-1, -1, 2]
     ]
 
+     */
+
+    // 筆記
+    /*
     這一題是TwoSum的加強版，由於題目要求為0,
     所以我們可依依序取出陣列中的數，將0減去取出的數就是我們需要的剩下兩數之和
     剩下兩數怎麼求得呢？我們可以使用兩個pointer，一前一後拜訪剩餘陣列
     由於我們已經先由小到大重新sorting過陣列，所以可以容易的判斷何時pointer要移動
+    注意邊界條件
+    為什麼要設定（i==0 || nums[i] != nums[i - 1]）
+    第一個是配合第二個用的
+    第二個條件是避免重複拜訪
+    第一個是讓i=0的時候不會報錯，可以正常拜訪
      */
     public static void main(String[] args) {
         int[] a = {-1, 0, 1, 2, -1, -4};
-        new Q15_ThreeSum().threeSum(a);
+        new Q15_ThreeSum().threeSum2(a);
     }
 
-    public List<List<Integer>> threeSum(int[] nums) {
+    private List<List<Integer>> threeSum2(int[] nums) {
+        Arrays.sort(nums);//-4,-1,-1,0,1,2
+        int length = nums.length;
+        List<List<Integer>> ans = new ArrayList<>();
+        Map<List<Integer>, Integer> checkRepeat = new HashMap<>();
+        for (int i = 0; i < length; i++) {
+            if (i == 0 || nums[i] != nums[i - 1]) {
+                int target = 0 - nums[i];
+                int start = i + 1, end = length - 1;
+                while (start < end) {
+                    int sum = nums[start] + nums[end];
+                    List<Integer> temp = new ArrayList<>();
+                    if (sum == target) {
+                        temp.add(nums[i]);
+                        temp.add(nums[start]);
+                        temp.add(nums[end]);
+                        if (checkRepeat.isEmpty() || checkRepeat.get(temp) == null) {
+                            ans.add(temp);
+                            checkRepeat.put(temp, i);
+                        }
+                        start++;
+                        end--;
+                    } else if (sum < target)
+                        start++;
+                    else if (sum > target)
+                        end--;
+                }
+            }
+        }
+        return ans;
+
+    }
+
+    private List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);//有小到大排列
         List<List<Integer>> res = new ArrayList<>();
         Map<List<Integer>, Integer> checkDupe = new HashMap<>();
@@ -64,7 +105,7 @@ public class Q15_ThreeSum {
             }
 
         }
-
+        return res;
 
 //        Arrays.sort(nums);
 //        List<List<Integer>> res = new LinkedList();
@@ -93,6 +134,5 @@ public class Q15_ThreeSum {
 //
 //            }
 //        }
-        return res;
     }
 }

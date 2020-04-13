@@ -34,7 +34,7 @@ public class Q7_ReverseInteger {
     只要記得取餘數這個方法就可以了
     對10取取餘數可以拿到當前最後一位的數字
      */
-    public int reverse2(int x) {
+    private int reverse2(int x) {
         boolean isNegative = false;
         if (x < 0) {
             isNegative = true;
@@ -49,7 +49,7 @@ public class Q7_ReverseInteger {
         return (int) (isNegative ? 0 - temp : temp);
     }
 
-    public int reverse(int x) {
+    private int reverse(int x) {
         long result = 0;
         long temp = x;
         while (temp != 0) {

@@ -1,4 +1,6 @@
-package com.chris.leetcode;
+package com.chris.leetcode.unfinish;
+
+import com.chris.leetcode.ListNode;
 
 public class Q24_SwapNodesInPairs {
     /*
@@ -17,7 +19,7 @@ public class Q24_SwapNodesInPairs {
         new Q24_SwapNodesInPairs().swapPairs(l1);
     }
 
-    public ListNode swapPairs(ListNode head) {
+    private ListNode swapPairs(ListNode head) {
         ListNode dummy = new ListNode(0); // 头结点
         dummy.next = head;
 

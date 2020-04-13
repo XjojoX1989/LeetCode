@@ -34,7 +34,7 @@ public class Q13_RomanToInteger {
      反若當前的羅馬文字代表的數比前一個要 小         : 則減
      */
 
-    public int romanToInt2(String s) {
+    private int romanToInt2(String s) {
         int result = 0;
         int prev = 0;
 
@@ -79,7 +79,7 @@ public class Q13_RomanToInteger {
         return result;
     }
 
-    public int romanToInt(String s) {
+    private int romanToInt(String s) {
         Map<Character, Integer> map = new HashMap<>();
         map.put('I', 1);
         map.put('V', 5);

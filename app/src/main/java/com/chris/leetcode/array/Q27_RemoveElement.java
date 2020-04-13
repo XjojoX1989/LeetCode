@@ -1,4 +1,4 @@
-package com.chris.leetcode;
+package com.chris.leetcode.array;
 
 public class Q27_RemoveElement {
 
@@ -22,15 +22,37 @@ public class Q27_RemoveElement {
 
     It doesn't matter what values are set beyond the returned length.
      */
+    //筆記
+    /*
+    重點在於指針移動的方式，到底怎麼樣移動指針
+    先創立一個pointer p
+    再用一個for回圈分別去比較當前的值是否與 val ㄧ樣
+    若一樣->do nothing ,for繼續跑
+    若不同->當前for的值給予p指針所在的位置並且p++
+    依此類推直到循環結束
+     */
     public static void main(String[] args) {
         int[] a = {3, 2, 2, 3};
         int[] b = {0, 1, 2, 2, 3, 0, 4, 2};
-        new Q27_RemoveElement().removeElement(a, 3);
-        new Q27_RemoveElement().removeElement(b, 2);
-        new Q27_RemoveElement().removeElement(b, 2);
+        new Q27_RemoveElement().removeElement2(a, 3);
+        new Q27_RemoveElement().removeElement2(b, 2);
+        new Q27_RemoveElement().removeElement2(b, 2);
     }
 
-    public int removeElement(int[] nums, int val) {
+    private int removeElement2(int[] nums, int val) {
+        int p1 = 0, p2 = 0;
+        while (p1 < nums.length) {
+            if (nums[p1] != val) {
+                nums[p2] = nums[p1];
+                p2++;
+            }
+            p1++;
+
+        }
+        return p2;
+    }
+
+    private int removeElement(int[] nums, int val) {
         int i = 0;
         for (int j = 0; j < nums.length; j++) {
             if (nums[j] != val) {
@@ -39,5 +61,6 @@ public class Q27_RemoveElement {
             }
         }
         return i;
+
     }
 }

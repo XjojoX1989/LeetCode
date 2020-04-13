@@ -1,4 +1,4 @@
-package com.chris.leetcode;
+package com.chris.leetcode.unfinish;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public class Q17_LetterCombinationsOfPhoneNumber {
         }
     }
 
-    public List<String> letterCombinations(String digits) {
+    private List<String> letterCombinations(String digits) {
         if (digits.length() != 0)
             backtrack("", digits);
         return output;

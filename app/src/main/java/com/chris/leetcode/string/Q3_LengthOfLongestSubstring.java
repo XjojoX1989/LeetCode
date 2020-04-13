@@ -78,7 +78,7 @@ public class Q3_LengthOfLongestSubstring {
      若掃過的字元"在"Set內的話，我們就將此字元移除，
      並將第二個指標移動一位(代表新一次的循環了）
      */
-    public int lengthOfLongestSubstring(String s) {
+    private int lengthOfLongestSubstring(String s) {
         int length = s.length();
         int ans = 0, i = 0, j = 0;
         int theCharsThatHadMoved = 0;

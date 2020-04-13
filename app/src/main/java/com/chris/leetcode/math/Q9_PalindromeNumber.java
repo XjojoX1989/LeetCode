@@ -13,7 +13,7 @@ public class Q9_PalindromeNumber {
         new Q9_PalindromeNumber().isPalindrome(10);
     }
 
-    public boolean isPalindrome2(int x) {
+    private boolean isPalindrome2(int x) {
         if (x == 0)
             return true;
         if (x < 0 || x % 10 == 0)
@@ -26,7 +26,7 @@ public class Q9_PalindromeNumber {
         return ans==x;
     }
 
-    public boolean isPalindrome(int x) {
+    private boolean isPalindrome(int x) {
         if (x == 0)
             return true;
         if (x < 0 || x % 10 == 0)

@@ -1,8 +1,10 @@
-package com.chris.leetcode;
+package com.chris.leetcode.array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Q18_FourSum {
     /*
@@ -26,11 +28,52 @@ public class Q18_FourSum {
     ]
      */
     public static void main(String[] args) {
-        int[] a = {1, 0, -1, 0, -2};
-        new Q18_FourSum().fourSum(a, 0);
+        int[] a = {-3, -2, -1, 0, 0, 1, 2, 3};
+        new Q18_FourSum().fourSum2(a, 0);
     }
 
-    public List<List<Integer>> fourSum(int[] nums, int target) {
+    /*
+    threeSum的衍伸題
+    其實不難只要把外面套上一個for迴圈再加上threeSum即可
+    其餘的解題思路基本上跟threeSum差不多
+    關鍵的地方還是依樣要去除重複的陣列
+     */
+    private List<List<Integer>> fourSum2(int[] nums, int target) {
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+        Map<List<Integer>, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length - 1; i++) {
+            int offset = target - nums[i];
+            if (i == 0 || nums[i] != nums[i - 1]) {
+                //從剩下的三個數找出offset
+                for (int j = i + 1; j < nums.length; j++) {
+                    int p1 = j + 1;
+                    int p2 = nums.length - 1;
+                    List<Integer> temp = new ArrayList<>();
+                    while (p1 < p2) {
+                        int sum = nums[j] + nums[p1] + nums[p2];
+                        if (sum == offset) {
+                            temp = Arrays.asList(nums[i], nums[j], nums[p1], nums[p2]);
+                            if (map.get(temp)==null){
+                                ans.add(temp);
+                                map.put(temp, i);
+                            }
+                            p1++;
+                            p2--;
+                        } else {
+                            if (sum < offset)
+                                p1++;
+                            else
+                                p2--;
+                        }
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+
+    private List<List<Integer>> fourSum(int[] nums, int target) {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums);
         int length = nums.length;
