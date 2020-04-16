@@ -39,19 +39,25 @@ public class Q39_CombinationSum {
 
         return result;
     }
+    //筆記
+    /*
+    組合的經典題型,使用遞迴的方法去解
+    每一次我們都先把陣列裡的element加進去
+    根據題目要求可以重複,所以我們下一次的遞迴的起點還是在同一個
+    不過傳進去的遞迴target必須減去當前element
+    一直遞迴到target=0表示陣列內的元素可以組合出target
+    若遞迴到target<0則表示無法組合出
+     */
 
     private void recursor(List<List<Integer>> result, List<Integer> temp, int target, int[] candidates, int start) {
         if (target < 0) return;
         if (target == 0) {
-            System.out.println("target=0");
             result.add(new ArrayList<>(temp));
             return;
         }
         for (int i = start; i < candidates.length; i++) {
             temp.add(candidates[i]);
-            System.out.println("recursor");
             recursor(result, temp, target - candidates[i], candidates, i);
-            System.out.println("remove");
             temp.remove(temp.size() - 1);
         }
     }
